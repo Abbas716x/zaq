@@ -1,0 +1,36 @@
+{
+  "name": "716QX Lounge OS 3.5 [Apex Edition]",
+  "short_name": "716QX",
+  "description": "Enterprise Cybernetic POS & Lounge Session Management System",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape-primary",
+  "background_color": "#030307",
+  "theme_color": "#030307",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["business", "finance", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='128' fill='%2307070d'/><circle cx='256' cy='256' r='200' fill='none' stroke='%238B5CF6' stroke-width='24'/><circle cx='256' cy='256' r='140' fill='none' stroke='%2306B6D4' stroke-width='16'/><text x='50%25' y='57%25' text-anchor='middle' fill='%23FFFFFF' font-size='180' font-family='sans-serif' font-weight='900'>R</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الجلسات المباشرة",
+      "short_name": "الجلسات",
+      "url": "./index.html#tables",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>🎮</text></svg>", "sizes": "96x96" }]
+    },
+    {
+      "name": "سجل الديون",
+      "short_name": "الديون",
+      "url": "./index.html#debts",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>📒</text></svg>", "sizes": "96x96" }]
+    }
+  ]
+}
