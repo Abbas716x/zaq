@@ -1,0 +1,452 @@
+/* ==========================================================================
+   716QX LOUNGE OS 3.5 — APEX ARCHITECTURE DESIGN SYSTEM
+   Cyberpunk / Deep Space Glassmorphism Engine
+   ========================================================================== */
+
+:root {
+    --bg-primary: #030307;
+    --bg-secondary: #07070d;
+    --bg-surface: rgba(10, 10, 18, 0.82);
+    --bg-surface-solid: #0A0A12;
+    --glass-bg: linear-gradient(145deg, rgba(16, 20, 38, 0.75), rgba(7, 9, 20, 0.82));
+    --glass-border: rgba(139, 92, 246, 0.18);
+    --glass-border-hover: rgba(6, 182, 212, 0.65);
+    
+    --accent-neon: #06B6D4;
+    --accent-violet: #8B5CF6;
+    --accent-emerald: #22C55E;
+    --accent-amber: #F59E0B;
+    --accent-rose: #F43F5E;
+    
+    --text-main: #FFFFFF;
+    --text-muted: #94A3B8;
+    --text-dim: #64748B;
+    
+    --ease-cyber: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Universal Reset & Optimizations */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: 'Tajawal', sans-serif;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Numeric & Code Typography Optimization */
+.font-en {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* Hardware-Accelerated Canvas Background */
+#interactive-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.95;
+    will-change: transform;
+}
+
+/* Multi-Tier Ambient Deep Space Aurora */
+.ambient-aurora {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+    background: 
+        radial-gradient(ellipse at 15% 10%, rgba(6, 182, 212, 0.14), transparent 30%),
+        radial-gradient(ellipse at 85% 20%, rgba(139, 92, 246, 0.2), transparent 35%),
+        radial-gradient(ellipse at 50% 85%, rgba(14, 116, 144, 0.22), transparent 45%),
+        linear-gradient(160deg, #020309 0%, #060818 50%, #020309 100%);
+}
+
+.ambient-aurora::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.65;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 35% 75%, rgba(6, 182, 212, 0.9) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 65% 15%, rgba(255, 255, 255, 0.95) 0 1.2px, transparent 1.7px),
+        radial-gradient(circle at 90% 65%, rgba(139, 92, 246, 0.85) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px);
+    background-size: 260px 220px, 340px 280px, 400px 320px, 300px 240px, 480px 360px;
+    animation: star-drift 28s linear infinite;
+}
+
+.ambient-aurora::after {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: conic-gradient(from 215deg at 50% 50%, transparent 0deg, rgba(6, 182, 212, 0.06) 45deg, transparent 95deg, rgba(139, 92, 246, 0.08) 180deg, transparent 230deg);
+    filter: blur(36px);
+    animation: nebula-drift 22s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+@keyframes star-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-30px, 20px, 0); }
+}
+
+@keyframes nebula-drift {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.55; }
+    50% { transform: rotate(8deg) scale(1.05); opacity: 0.85; }
+    100% { transform: rotate(15deg) scale(1.1); opacity: 0.65; }
+}
+
+/* ==========================================================================
+   GLASSMORPHISM ARCHITECTURE
+   ========================================================================== */
+
+.glass-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 
+        0 18px 45px rgba(0, 0, 0, 0.5), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08), 
+        inset 0 0 20px rgba(6, 182, 212, 0.02);
+    transition: 
+        transform 0.25s var(--ease-cyber), 
+        border-color 0.25s var(--ease-cyber), 
+        box-shadow 0.25s var(--ease-cyber);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.08), transparent 30%, transparent 70%, rgba(139, 92, 246, 0.06));
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: 
+        0 24px 55px rgba(0, 0, 0, 0.6), 
+        0 0 30px rgba(6, 182, 212, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   INTERACTIVE BUTTONS & NEON GLOW ENGINE
+   ========================================================================== */
+
+button {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s var(--ease-cyber);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Dynamic Ripple Element */
+button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width 0.35s ease-out, height 0.35s ease-out, opacity 0.35s ease-out;
+    opacity: 0;
+}
+
+button:active::after {
+    width: 280px;
+    height: 280px;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Apex Violet Glow Button */
+.glow-btn-primary {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    box-shadow: 
+        0 6px 20px rgba(139, 92, 246, 0.35), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glow-btn-primary:hover {
+    box-shadow: 
+        0 10px 28px rgba(139, 92, 246, 0.55), 
+        0 0 18px rgba(139, 92, 246, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+    filter: brightness(1.08) saturate(1.1);
+}
+
+/* Cyber Cyan Glow Button */
+.glow-btn-cyan {
+    background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+    color: #030307;
+    box-shadow: 
+        0 6px 20px rgba(6, 182, 212, 0.32), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.glow-btn-cyan:hover {
+    box-shadow: 
+        0 10px 28px rgba(6, 182, 212, 0.5), 
+        0 0 18px rgba(6, 182, 212, 0.3);
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+/* Emerald Fiscal Glow Button */
+.glow-btn-emerald {
+    background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+    color: #030307;
+    box-shadow: 
+        0 6px 20px rgba(34, 197, 94, 0.28), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.glow-btn-emerald:hover {
+    box-shadow: 
+        0 10px 28px rgba(34, 197, 94, 0.45), 
+        0 0 18px rgba(34, 197, 94, 0.3);
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+/* ==========================================================================
+   NAVIGATION, DRAWERS & TABS
+   ========================================================================== */
+
+.sidebar-link {
+    transition: all 0.2s var(--ease-smooth);
+    border-right: 4px solid transparent;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+}
+
+.sidebar-link.active {
+    background: rgba(139, 92, 246, 0.16);
+    color: var(--accent-violet);
+    border-right-color: var(--accent-violet);
+    box-shadow: inset 4px 0 12px rgba(139, 92, 246, 0.12);
+}
+
+.header-tab {
+    transition: all 0.2s ease;
+}
+
+.header-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.header-tab.active {
+    background: var(--accent-violet);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+}
+
+/* ==========================================================================
+   FORM CONTROLS & NEON INPUT MATRIX
+   ========================================================================== */
+
+input, select, textarea {
+    background-color: rgba(7, 7, 13, 0.88) !important;
+    border: 1px solid rgba(148, 163, 184, 0.15) !important;
+    color: #FFFFFF !important;
+    transition: all 0.2s var(--ease-cyber);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-neon) !important;
+    box-shadow: 
+        0 0 0 3px rgba(6, 182, 212, 0.15), 
+        0 0 14px rgba(6, 182, 212, 0.25) !important;
+    outline: none !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-dim) !important;
+    font-size: 0.825rem;
+}
+
+select option {
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    padding: 8px 12px;
+}
+
+/* Number Input Wheel Clean */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ==========================================================================
+   DYNAMIC PULSE, TIMERS & CATEGORY ACCENTS
+   ========================================================================== */
+
+.timer-live {
+    animation: cyber-pulse 2s ease-in-out infinite;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.35);
+}
+
+@keyframes cyber-pulse {
+    0%, 100% {
+        opacity: 0.9;
+        text-shadow: 0 0 6px rgba(6, 182, 212, 0.25);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 16px rgba(6, 182, 212, 0.8), 0 0 24px rgba(6, 182, 212, 0.4);
+    }
+}
+
+/* Section Colors */
+.section-accent-violet { --section-accent: #8B5CF6; }
+.section-accent-cyan   { --section-accent: #06B6D4; }
+.section-accent-amber  { --section-accent: #F59E0B; }
+.section-accent-rose   { --section-accent: #F43F5E; }
+.section-accent-green  { --section-accent: #22C55E; }
+
+.menu-section-accent {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    border-top: 3px solid var(--section-accent) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.25s var(--ease-cyber);
+}
+
+.menu-section-accent:hover {
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    border-top-color: var(--section-accent) !important;
+    box-shadow: 
+        0 24px 55px rgba(0, 0, 0, 0.6), 
+        0 0 24px rgba(139, 92, 246, 0.12);
+}
+
+/* ==========================================================================
+   MODAL DIALOGS & OVERLAYS
+   ========================================================================== */
+
+.modal-backdrop {
+    animation: modal-fade-in 0.25s var(--ease-cyber);
+}
+
+.modal-backdrop > .glass-card {
+    animation: modal-scale-up 0.3s var(--ease-bounce);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.75), 
+        0 0 40px rgba(139, 92, 246, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+@keyframes modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modal-scale-up {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR & SYSTEM SCROLL UTILITIES
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.25);
+    border-radius: 9999px;
+    transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-neon);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ==========================================================================
+   PRINT MEDIA RULES
+   ========================================================================== */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #interactive-canvas, .ambient-aurora, header, aside, #toast-container {
+        display: none !important;
+    }
+}
